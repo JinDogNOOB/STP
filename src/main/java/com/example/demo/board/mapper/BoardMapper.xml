@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.board.mapper.BoardMapper">
+
+
+	<update id="addJsessionByUid" parameterType="java.util.Map">
+		UPDATE USERS
+			SET JSESSION = #{jsession}
+		WHERE UID = #{uid}
+	</update>
+
+<!-- ########################################################################## -->
+<!-- USERS XML MAPPER -->
+	<select id="findUidByEmail" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT UID 
+		FROM USERS
+		WHERE EMAIL=#{email}
+	
+	</select>
+	
+	<select id="userDetail" parameterType="string" resultType="com.example.demo.board.domain.UserVO"><!-- resultType String string -->
+		SELECT 
+			*
+		FROM USERS
+		WHERE 
+		UID=#{uid}
+	</select>
+
+
+	<insert id="userInsert" parameterType="com.example.demo.board.domain.UserVO"><!-- sign up on databases -->
+		INSERT INTO
+			USERS(UNO,UID,UPASSWORD,UNAME,EMAIL,UPDATE_LOG,AUTH,MONEY,THUMBNAILNAME)
+		VALUES(#{uno},#{uid},#{upassword},#{uname},#{email},now(),0,0,#{thumbnailname})
+	</insert>
+
+
+	<delete id="userDelete" parameterType="int">
+		DELETE FROM USERS WHERE UNO=#{uno}
+	</delete>
+
+
+	<update id="addMoney" parameterType="java.util.Map">
+	UPDATE USERS
+		SET MONEY = #{money}
+	WHERE UID = #{uid}
+	</update>
+
+	<select id="getMoney" parameterType="java.lang.String" resultType="int" >
+	SELECT MONEY
+	FROM USERS
+	WHERE UID=#{uid}
+	</select>
+
+	<update id="userUpdate" parameterType="com.example.demo.board.domain.UserVO">
+	UPDATE USERS
+		SET UNAME = #{uname}, UPASSWORD = #{upassword}, THUMBNAILNAME = #{thumbnailname}
+			
+	WHERE UID=#{uid}
+	</update>
+
+	<update id="userAuthUpdate" parameterType="com.example.demo.board.domain.UserVO">
+	UPDATE USERS
+		SET AUTH = #{auth}
+	WHERE UID=#{uid}
+	</update>
+
+	<update id="userPasswordUpdate" parameterType="com.example.demo.board.domain.UserVO">
+	UPDATE USERS
+		SET UPASSWORD = #{upassword}
+	WHERE UID=#{uid}
+	</update>
+
+
+
+
+
+
+<!-- ########################################################################## -->
+<!-- BOARD XML MAPPER -->
+
+	<select id="boardGrepAllByUid" parameterType="java.lang.String" resultType="com.example.demo.board.domain.BoardVO">
+		SELECT * from BOARDXCSGO WHERE UID=#{uid} UNION ALL
+		SELECT * from BOARDXFREE WHERE UID=#{uid} UNION ALL
+		SELECT * from BOARDXNOTICE WHERE UID=#{uid} UNION ALL
+		SELECT * from BOARDXPUBG WHERE UID=#{uid} UNION ALL
+		SELECT * from BOARDXHOTS WHERE UID=#{uid} 
+		ORDER BY REG_DATE DESC
+	
+	</select>
+
+	<select id="boardHighestBno" parameterType="java.util.Map" resultType="Integer" >
+		SELECT ifnull(BNO,0)null_check
+		FROM BOARDX${boardname}
+		ORDER BY BNO DESC
+		LIMIT 1
+	</select>
+
+	<select id="boardQueryHighestBno" parameterType="java.util.Map" resultType="Integer" >
+		SELECT ifnull(BNO,0)null_check
+		FROM BOARDX${boardname}
+		WHERE CONTENT LIKE CONCAT('%',#{query},'%')
+		ORDER BY BNO DESC
+		LIMIT #{queryindexstart},1
+	</select>
+	
+	<select id="boardCount" parameterType="java.util.Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM BOARDX${boardname}	
+	</select>
+	
+	<select id="boardQueryCount" parameterType="java.util.Map" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM BOARDX${boardname}	
+		WHERE CONTENT LIKE CONCAT('%',#{query},'%')
+	</select>
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="com.example.demo.board.domain.BoardVO">
+		SELECT
+			*
+		FROM BOARDX${boardname}
+		WHERE BNO &lt; #{indexstart}
+		ORDER BY BNO DESC 
+		LIMIT #{row}
+	</select>
+	
+	<select id="boardQueryList" parameterType="java.util.Map" resultType="com.example.demo.board.domain.BoardVO">
+		SELECT
+			*
+		FROM BOARDX${boardname}
+		WHERE BNO &lt; #{indexstart} AND CONTENT LIKE CONCAT('%',#{query},'%')
+		ORDER BY BNO DESC 
+		LIMIT #{row}
+	</select>
+	
+	<select id="boardDetail" parameterType="java.util.Map" resultType="com.example.demo.board.domain.BoardVO">
+		SELECT
+			*
+		FROM BOARDX${boardname}
+		WHERE
+		BNO=#{bno}
+	</select>
+	
+	<insert id="boardInsert" parameterType="com.example.demo.board.domain.BoardVO" useGeneratedKeys="true" keyProperty="bno">
+		INSERT INTO
+		BOARDX${boardname}(BNO,SUBJECT,CONTENT,WRITER,REG_DATE,UID,VIEWCOUNT,FLAG,BOARDNAME)
+		VALUES(#{bno},#{subject},#{content},#{writer},now(),#{uid},0,1,#{boardname})
+	</insert>
+	
+	
+	<update id="boardUpdate" parameterType="java.util.Map">
+		UPDATE BOARDX${boardname}
+			SET
+			<if test="subject!=null">
+				SUBJECT=#{subject}
+			</if>
+			
+			<if test="subject!=null and content!=null">,</if>
+			<if test="content!=null">
+				CONTENT=#{content}
+			</if>
+			
+			WHERE BNO=#{bno}
+	</update>
+
+
+	<update id="boardDelete" parameterType="java.util.Map">
+		UPDATE BOARDX${boardname}
+		SET FLAG = 0
+		WHERE BNO = #{bno}
+	</update>
+	
+	
+	<update id="boardAddViewCount" parameterType="java.util.Map">
+	UPDATE BOARDX${boardname}
+		SET VIEWCOUNT = VIEWCOUNT+1
+	WHERE BNO=#{bno}
+	
+	</update>
+	
+	
+	
+	
+	
+	<!-- ####################################################################################3 -->
+	<!-- FILE XML MAPPER -->
+	
+	<insert id="fileInsert" parameterType="com.example.demo.board.domain.FileVO">
+		INSERT INTO
+		FILES (FNO,BNO,FILENAME,FILEORINAME,FILEURL,BOARDNAME)
+		VALUES(#{fno},#{bno},#{fileName},#{fileOriName},#{fileUrl},#{boardName})
+	</insert>
+	
+	
+	<select id="fileDetail" parameterType="java.util.Map" resultType="com.example.demo.board.domain.FileVO">
+		SELECT
+			*
+		FROM FILES
+		WHERE
+			BNO= #{bno} AND BOARDNAME=#{boardname}
+	</select>
+	
+	
+	
+	
+	
+	<!-- ########################################################################################## -->
+	<!-- AUTH URL XML MAPPER -->
+	
+
+	<insert id="setAuthUrl" parameterType="com.example.demo.board.domain.AuthUrlVO">
+		INSERT INTO
+		EMAILAUTHURL (ANO, UID, AUTHTYPE, URL)
+		VALUES(#{ano}, #{uid}, #{authType}, #{url})
+	</insert>
+	
+	<select id="getAuthUrlT" parameterType="com.example.demo.board.domain.AuthUrlVO" resultType="com.example.demo.board.domain.AuthUrlVO">
+		SELECT *
+		FROM EMAILAUTHURL
+		WHERE UID=#{uid} AND AUTHTYPE=#{authType}
+	</select>
+	
+	
+	<delete id="deleteAuthUrl" parameterType="com.example.demo.board.domain.AuthUrlVO">
+		DELETE FROM EMAILAUTHURL
+		WHERE UID=#{uid} AND AUTHTYPE=#{authType}
+	</delete>
+	
+	<select id="countAuthByUrl" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM EMAILAUTHURL
+		WHERE URL=#{url}
+	</select>
+	
+	<select id="getAuthByUrl" parameterType="String" resultType="com.example.demo.board.domain.AuthUrlVO">
+		SELECT *
+		FROM EMAILAUTHURL
+		WHERE URL=#{url}
+	</select>
+	
+	<delete id="deleteUrlByUrl" parameterType="String">
+		DELETE FROM EMAILAUTHURL
+		WHERE URL=#{url}
+	</delete>
+	
+
+	
+	
+	
+</mapper>
+
+
+
+

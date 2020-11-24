@@ -1,0 +1,70 @@
+* { margin: 0; padding: 0; }
+
+html {
+  background: url("https://xshyfc.com/wp-content/uploads/data/2018/2/17/Cs-Go-Knife-Wallpaper-PIC-WPXH38705-1024x576.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#page-wrap {
+  width: 400px;
+  margin: 150px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 0 20px black;
+  -webkit-box-shadow: 0 0 20px black;
+  box-shadow: 0 0 20px black;
+}
+
+/*
+비밀번호 수정 css
+ */
+
+#uname{
+  width: 300px;
+  height: 40px;
+  border: 1px rgba(0,0,0,1) solid;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+#upassword{
+  width: 300px;
+  height: 40px;
+  border: 1px rgba(0,0,0,1) solid;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+#password_retry_frame{
+  width: 300px;
+  height: 40px;
+  border: 1px rgba(0,0,0,1) solid;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+#info_modify{
+  width: 150px;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-left: 125px;
+}
+#reset{
+  width: 150px;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-left: 125px;
+}
+#withdrawal{
+  width: 150px;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-left: 125px;
+}
+#email{
+  width: 300px;
+  height: 40px;
+  border: 1px rgba(0,0,0,1) solid;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}

@@ -1,0 +1,52 @@
+*{ margin: 0; padding: 0;
+  width: 100%;}
+
+#id_pwd_frame{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://www.csgowallpapers.com/assets/images/original/mossawi_188903838916_20181220233416_461334858858.jpg");
+  background-size: cover;
+}
+
+#title{
+  width: 1000px;
+  height: 100px;
+  margin: 10% auto;
+  margin-bottom: 80px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  color: white;
+}
+#id_pw_button{
+  margin: 1% auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+input{
+  border: 1px rgba(0,0,0,1) solid;
+  width: 500px;
+  height: 90px;
+  font-size: 25px;
+  color: white;
+  border: 1px rgba(255,255,255,1) solid;
+  background-color: rgba(0,0,0,0.5);
+  transition-property: all 5s color 0.5s;
+  transition-duration: 0.5s;
+  margin: 15px;
+}
+input:hover{
+  border: 1px rgba(255,255,255,1) solid;
+  border-radius: 40px;
+  color: aqua;
+}
+#main_page{
+  width: 700px;
+  height: 200px;
+  border: none;
+  background: rgba(0,0,0,0);
+  cursor: pointer;
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.board.mapper.ShopMapper">
+
+	<insert id="addShopItem" parameterType="com.example.demo.board.domain.ItemVO">
+		INSERT INTO
+			SHOPX${shopId}(SNO, PRICE, ITEMNAME, IMGNAME)
+			VALUES(#{sno}, #{price}, #{itemName}, #{imgName})
+	</insert>
+	
+	<select id="getShopItem" parameterType="com.example.demo.board.domain.ItemVO" resultType="com.example.demo.board.domain.ItemVO">
+		SELECT *
+		FROM SHOPX${shopId}
+	</select>
+	
+	<select id="getOneShopItem" parameterType="com.example.demo.board.domain.ItemVO" resultType="com.example.demo.board.domain.ItemVO">
+		SELECT *
+		FROM SHOPX${shopId}
+		WHERE SNO=#{sno}
+	</select>
+	
+	
+	<delete id="deleteShopItem" parameterType="com.example.demo.board.domain.ItemVO">
+		DELETE
+		FROM SHOPX${shopId}
+		WHERE SNO=#{sno}
+	</delete>
+
+
+
+
+	<insert id="addInventoryItem" parameterType="com.example.demo.board.domain.InventoryVO">
+		INSERT INTO
+			INVENTORY(INO, UNO, PRICE, ITEMNAME, IMGNAME, SHOPID)
+			VALUES(#{ino}, #{uno}, #{price}, #{itemName}, #{imgName}, #{shopId})
+	</insert>
+	
+	<select id="getInventoryItemByUno" parameterType="int" resultType="com.example.demo.board.domain.InventoryVO">
+		SELECT *
+		FROM INVENTORY
+		WHERE UNO=#{uno}
+	</select>
+	
+	<delete id="deleteInventoryItem" parameterType="com.example.demo.board.domain.InventoryVO">
+		DELETE
+		FROM INVENTORY
+		WHERE INO=#{ino} AND UNO=#{uno}
+	</delete>
+
+
+</mapper>
+
+
+

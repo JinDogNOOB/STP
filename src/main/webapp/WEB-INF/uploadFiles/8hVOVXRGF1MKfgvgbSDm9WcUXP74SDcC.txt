@@ -1,0 +1,14 @@
+
+이메일 인증 DB
+
+인증요청시 db에 데이터 삽입 
+
+
+UID                  AUTHPATH                                   date                
+kadyo               4rafh54a75hf7ah7a6f5g               2019 04 13 23:00 
+
+
+
+
+
+인증되면 db 삭제 

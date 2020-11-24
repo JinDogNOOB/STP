@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.board.mapper.AdminMapper">
+
+
+	
+	<select id="getUserListByAdmin" resultType="com.example.demo.board.domain.UserVO">
+		SELECT * 
+		FROM USERS
+	</select>
+
+	<select id="getUserInfoByAdmin" parameterType="int" resultType="com.example.demo.board.domain.UserVO">
+		SELECT * 
+		FROM USERS
+		WHERE UNO=#{uno}
+	</select>
+
+	<update id="setUserInfoByAdmin" parameterType="com.example.demo.board.domain.UserVO">
+		UPDATE USERS
+			SET UNAME=#{uname},UPASSWORD=#{upassword},AUTH=#{auth},MONEY=#{money}
+		WHERE UNO=#{uno}
+	</update>
+
+	<select id="countUserListByAdmin" resultType="int">
+		SELECT COUNT(*)
+		FROM USERS
+	</select>
+	
+	<delete id="deleteUserInfoByAdmin" parameterType="int">
+		DELETE
+		FROM USERS
+		WHERE UNO=#{uno}
+	</delete>
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+</mapper>
