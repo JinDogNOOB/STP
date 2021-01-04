@@ -69,7 +69,7 @@ public class BoardService {
 	
 	
 	public boolean userIdCheckService(String uid)throws Exception{ 
-		
+
 		if(mBoardMapper.userDetail(uid)==null) {
 			return true; //중복이 없으면 리턴 트루 
 		}else {

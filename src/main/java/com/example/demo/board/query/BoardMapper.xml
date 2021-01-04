@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE EMAIL=#{email}
 	
 	</select>
-	
-	<select id="userDetail" parameterType="string" resultType="com.example.demo.board.domain.UserVO"><!-- resultType String string -->
+
+	<select id="userDetail" parameterType="java.lang.String" resultType="com.example.demo.board.domain.UserVO"><!-- resultType String string -->
 		SELECT 
 			*
 		FROM USERS
@@ -35,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			USERS(UNO,UID,UPASSWORD,UNAME,EMAIL,UPDATE_LOG,AUTH,MONEY,THUMBNAILNAME)
 		VALUES(#{uno},#{uid},#{upassword},#{uname},#{email},now(),0,0,#{thumbnailname})
 	</insert>
+
 
 
 	<delete id="userDelete" parameterType="int">

@@ -30,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+
 	<insert id="commentInsert" parameterType="com.example.demo.board.domain.CommentVO">
 		INSERT INTO
 		COMMENT (CNO, BNO, BOARDNAME, CONTENT, WRITER, UID, REG_DATE)

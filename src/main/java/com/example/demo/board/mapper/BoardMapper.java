@@ -1,5 +1,6 @@
 package com.example.demo.board.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,7 @@ import com.example.demo.board.domain.UserVO;
 
 
 
+@Mapper
 @Repository("com.example.demo.board.mapper.BoardMapper") // define this class will access on database
 public interface BoardMapper { // writing the interface on here and this is used by BoardMapper.XML
 	

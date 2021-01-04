@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -26,7 +27,8 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	
-	
+	@Autowired
+	private ApplicationContext applicationContext;
 	
 	
 	/*
@@ -37,6 +39,9 @@ public class DemoApplication {
 		
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		
+		sessionFactory.setTypeAliasesPackage("com.example.demo.board.domain");
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:com/example/demo/board/query/*.xml"));
+
 		sessionFactory.setDataSource(dataSource);
 		return sessionFactory.getObject();
 	}

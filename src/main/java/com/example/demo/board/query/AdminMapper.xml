@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE UNO=#{uno}
 	</update>
 
+
 	<select id="countUserListByAdmin" resultType="int">
 		SELECT COUNT(*)
 		FROM USERS
