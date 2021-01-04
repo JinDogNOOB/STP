@@ -9,6 +9,10 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 쓰지말자
+ */
+@Deprecated
 public class Klog {
 
 	private static String logUrl = "/home/uadmin/logs";
@@ -16,14 +20,14 @@ public class Klog {
 	
 	
 	Klog() throws IOException{
-		File file = new File(logUrl);
+		/* File file = new File(logUrl);
 		File filename = new File(logUrl + logFile);
 		if(file.exists() == false) {
 			file.mkdirs();
 		}
 		if(filename.exists() == false) {
 			filename.createNewFile();
-		}
+		} */
 	}
 	
 	private static Klog klog = null;
@@ -42,12 +46,12 @@ public class Klog {
 	
 	public void log(HttpServletRequest request, String string) throws IOException {
 		
-		OutputStream output = new FileOutputStream(logUrl + logFile, true);
+	/* 	OutputStream output = new FileOutputStream(logUrl + logFile, true);
 		
 		Date date = new Date();
 		
 		String log = date + " : "+  getIp(request) + " : " + string+ "\n";
-		output.write(log.getBytes());
+		output.write(log.getBytes()); */
 		
 	}
 	
