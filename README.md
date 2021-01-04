@@ -4,3 +4,10 @@
 * front : basic html & css
 * backend : spring boot, mybatis
 * db : mysql
+
+# db 구축
+* 순서
+    - mysql -u root -p 
+    - db_board 데이타베이스 생성
+    - use db_board;
+    - source /makeTable.sql경로
