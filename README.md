@@ -16,10 +16,12 @@
 * Ubuntu 18.04
 * 메일서버 설치 및 실행 smtp
 * DB셋팅
-    - mysql -u root -p 
-    - db_board 데이타베이스 생성
-    - use db_board;
-    - source /makeTable.sql까지 경로
+ ```
+mysql -u root -p 
+db_board 데이타베이스 생성
+use db_board;
+source /makeTable.sql까지 경로
+```
 * 프로젝트 빌드 및 Tomcat webapps에 .war 위치
 
 # Screenshots
